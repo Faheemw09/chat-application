@@ -16,7 +16,7 @@ function Chat({ socket, username, room }) {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-
+      console.log("Sending message:", messageData);
       await socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
@@ -25,6 +25,7 @@ function Chat({ socket, username, room }) {
 
   useEffect(() => {
     const receiveMessageHandler = (data) => {
+      console.log("Message received:", data);
       setMessageList((list) => [...list, data]);
     };
 
